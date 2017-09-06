@@ -2247,7 +2247,7 @@ static struct uart_driver npcmX50_uart_drv =
     .dev_name       = NPCMX50_SERIAL_NAME,
     .nr             = NPCMX50_UART_NUM_OF_MODULES,
     .cons           = NPCMX50_SERIAL_CONSOLE,
-    .driver_name    = NPCMX50_SERIAL_NAME,
+    .driver_name    = "serial",
     .major          = NPCMX50_SERIAL_MAJOR,
     .minor          = NPCMX50_SERIAL_MINOR,
 };
