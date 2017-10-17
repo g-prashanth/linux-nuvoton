@@ -118,6 +118,10 @@
 			pins = "GPIO23/SMB4DSCL/SMB14SCL";
 			input-enable;
 		};
+		gpio24_pins: gpio24_pins {
+                        pins = "GPIO24/IOXHDO";
+                        input-enable;
+                };
 		gpio24o_pins: gpio24o_pins {
 			pins = "GPIO24/IOXHDO";
 			output-high;
@@ -242,9 +246,17 @@
 			pins = "GPIO60/SMB3DSCL";
 			output-high;
 		};
+		gpio61l_pins: gpio61l_pins {
+		         pins = "GPO61/nDTR1_BOUT1/STRAP6";
+		         output-low;
+		};
 		gpio61o_pins: gpio61o_pins {
 			pins = "GPO61/nDTR1_BOUT1/STRAP6";
 			output-high;
+		};
+		gpio62l_pins: gpio62l_pins {
+		        pins = "GPO62/nRTST1/STRAP5";
+		        output-low;
 		};
 		gpio62o_pins: gpio62o_pins {
 			pins = "GPO62/nRTST1/STRAP5";
