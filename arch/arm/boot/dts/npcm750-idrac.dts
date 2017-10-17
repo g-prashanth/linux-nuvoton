@@ -268,8 +268,6 @@
         };
 
         uart3: uart3@f0004000 {
-            pinctrl-names = "default";
-            pinctrl-0 = <&uart2_pins>;
             status = "okay";
         };
 
