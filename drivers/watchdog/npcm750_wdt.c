@@ -23,6 +23,7 @@
 #include <asm/fiq.h>
 #include <mach/map.h>
 #include <linux/of_irq.h>
+#include <mach/regs_npcm750_gcr.h>
 
 #define WATCHDOG_FIQ            // Wdog0-2 are connected with OR gate directly to nFIQ. 
 
@@ -82,6 +83,27 @@ struct npcm750_wdt {
 };
 
 static struct npcm750_wdt *npcm750_wdt;
+
+static unsigned int npcm750_reset_cause(void)
+{
+    unsigned int status = 0;
+
+    if (READ_REG_BIT(INTCR2, 31) == 0){
+        status = WDIOF_POWEROVER;   //PORST
+    }
+    else if (READ_REG_BIT(INTCR2, 24) == 0){
+        status = WDIOF_CARDRESET;   //WDT1
+    }
+    else if (READ_REG_BIT(INTCR2, 29) == 0){
+        status = WDIOF_EXTERN1;     //WDT0
+    }
+    else if (READ_REG_BIT(INTCR2, 30) == 0){
+        status = WDIOF_EXTERN2;     //CORST
+    }
+
+    return status;
+}
+
 
 
 static int npcm750wdt_ping(struct watchdog_device *wdd)
@@ -215,7 +237,7 @@ static irqreturn_t npcm750wdt_interrupt(int irq, void *data)
 
 static const struct watchdog_info npcm750wdt_info = {
 	.identity	= "npcm750 watchdog",
-	.options	= WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING,
+	.options	= WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING | WDIOF_MAGICCLOSE,
 };
 
 static struct watchdog_ops npcm750wdt_ops = {
@@ -228,6 +250,7 @@ static struct watchdog_ops npcm750wdt_ops = {
 
 static struct watchdog_device npcm750_wdd = {
 	.status = WATCHDOG_NOWAYOUT_INIT_STATUS,
+    .bootstatus = 0,
 	.info = &npcm750wdt_info,
 	.ops = &npcm750wdt_ops,
     .min_timeout = 1,
@@ -296,6 +319,8 @@ static int npcm750wdt_probe(struct platform_device *pdev)
 	}
 #endif
     watchdog_set_nowayout(&npcm750_wdd, nowayout);
+
+    npcm750_wdd.bootstatus = npcm750_reset_cause();
 
 	ret = watchdog_register_device(&npcm750_wdd);
 	if (ret) {
