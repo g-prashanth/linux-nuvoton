@@ -905,6 +905,7 @@ static int npcmx50_aes_set_key_internal(struct npcmx50_aes_ctx *ctx, u32 *flags,
         if (memcmp(&in_key[1], dummy, key_len - 1)) 
         {
             ctx->useHRK = 0;
+            printk(KERN_ERR "\n not using hrk!!\n");
         }
         
 		// in HRK mode: select the key number according to the last byte on the dummy key.
