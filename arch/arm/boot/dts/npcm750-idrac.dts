@@ -284,8 +284,8 @@
             };
         };
 
-        /* lm75 on EB */
-        i2c1: i2c-bus@f0081000 {
+        /* lm75 on DRB,Horizon */
+        i2c5: i2c-bus@f0085000 {
             #address-cells = <1>;
             #size-cells = <0>;
             status = "okay";
@@ -296,6 +296,44 @@
                 status = "okay";
             };
         };
+
+        /*FRU on DRB*/
+        i2c5: i2c-bus@f0085000 {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            eeprom@50 {
+                compatible = "atmel,24c02";
+                reg = <0x50>;
+                pagesize = <16>;
+            };
+        };
+        
+        /*NDC FRU on Horizon*/
+        i2c10: i2c-bus@f008a000 {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+
+            eeprom@52 {
+                compatible = "atmel,24c02";
+                reg = <0x52>;
+                pagesize = <16>;
+            };
+        };
+
+       /*NDC Temp on Horizon*/
+        i2c10: i2c-bus@f008a000 {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+   		lm75@5E {
+                compatible = "lm75";
+                reg = <0x5E>;
+                status = "okay";
+            };
+	};
 
         /* tmp100 on EB */
         i2c2: i2c-bus@f0082000 {
@@ -476,30 +514,30 @@
                     &gpio1_pins
                     &gpio2_pins
                     &gpio3_pins
-                    &smb1d_pins
+                   /*	&smb1d_pins*/
                     &gpio6_pins
                     &gpio7_pins
                     &gpio8_pins
                     &gpio9o_pins
                     &gpio10_pins
                     &gpio11_pins
-                    &smb5b_pins
-                    &smb5c_pins
+                 /*   &smb5b_pins
+                    &smb5c_pins */
                     &gpio16_pins
                     &gpio17_pins
-                    &smb4b_pins
-                    &smb4c_pins
+                    /* &smb4b_pins
+                    &smb4c_pins */
                     &gpio22_pins
                     &gpio23_pins
                     &gpio24o_pins
                     &gpio25_pins
-                    &smb5_pins
+                 /*   &smb5_pins
                     &smb4_pins
-                    &smb3_pins
+                    &smb3_pins  */
                     &gpio32_pins
                     &spi0quad_pins
-                    &smb3c_pins
-                    &smb3b_pins
+                 /*   &smb3c_pins
+                    &smb3b_pins */
                     /*&gpio41_pins
                     &gpio42_pins*/
                     &jtag2_pins
@@ -519,12 +557,12 @@
                     &gpio61o_pins
                     &gpio62o_pins
                     &gpio63o_pins
-                    &fanin0_pins
+                   /* &fanin0_pins
                     &fanin1_pins
                     &fanin2_pins
                     &fanin3_pins
                     &fanin4_pins
-                    &fanin5_pins
+                    &fanin5_pins */
                     &gpio70_pins
                     &gpio71_pins
                     &gpio72_pins
@@ -566,8 +604,8 @@
                     &smb8_pins
                     &gpio130_pins
                     &gpio131_pins
-                    &smb10_pins
-                    &smb11_pins
+                  /*  &smb10_pins
+                    &smb11_pins */
                     /*&sd1_pins*/
                     &pwm4_pins
                     &pwm5_pins
@@ -582,8 +620,8 @@
                     &gpio168_pins
                     &gpio169_pins
                     &gpio170_pins
-                    &smb6_pins
-                    &smb7_pins
+                /*    &smb6_pins
+                    &smb7_pins */
                     &gpio175_pins
                     &gpio176_pins
                     &gpio177_pins
@@ -595,10 +633,10 @@
                     &gpio190o_pins
                     &gpio191o_pins
                     &gpio192_pins
-                    &smb0b_pins
-                    &smb0c_pins
+                  /*  &smb0b_pins
+                    &smb0c_pins */
                     &gpio197_pins
-                    &smb0d_pins
+              /*      &smb0d_pins */
                     &gpio200_pins
                     &gpio203o_pins
                     &ddc_pins
@@ -614,7 +652,7 @@
                     &gpio217_pins
                     &gpio218_pins
                     &gpio219_pins
-                    &smb12_pins
+              /*      &smb12_pins */
                     &gpio222_pins
                     &gpio223_pins
                     &spix_pins
@@ -795,30 +833,30 @@
 					&gpio1_pins
 					&gpio2_pins
 					&gpio3o_pins
-					&smb1d_pins
+					/*&smb1d_pins*/
 					&gpio6_pins
 					&gpio7_pins
 					&gpio8_pins
 					&gpio9o_pins
 					&gpio10_pins
 					&gpio11_pins
-					&smb5b_pins
-					&smb5c_pins
+				/*	&smb5b_pins
+					&smb5c_pins*/
 					&gpio16_pins
 					&gpio17_pins
-					&smb4b_pins
-					&smb4c_pins
+				/*	&smb4b_pins
+					&smb4c_pins*/
 					&gpio22_pins
 					&gpio23_pins
 					&gpio24_pins
 					&gpio25_pins
-					&smb5_pins
+				/*	&smb5_pins
 					&smb4_pins
-					&smb3_pins
+					&smb3_pins*/
 					&gpio32_pins
 					&spi0quad_pins
-					&smb3c_pins
-					&smb3b_pins
+				/*	&smb3c_pins
+					&smb3b_pins*/
 					/*&gpio41_pins
 					&gpio42_pins*/
 					&jtag2_pins
@@ -838,12 +876,12 @@
 					&gpio61l_pins
 					&gpio62l_pins
 					&gpio63o_pins
-					&fanin0_pins
+				/*	&fanin0_pins
 					&fanin1_pins
 					&fanin2_pins
 					&fanin3_pins
 					&fanin4_pins
-					&fanin5_pins
+					&fanin5_pins*/
 					&gpio70_pins
 					&gpio71_pins
 					&gpio72_pins
@@ -854,10 +892,10 @@
 					&gpio77_pins
 					&gpio78_pins
 					&gpio79_pins
-					&pwm0_pins
+				/*	&pwm0_pins
 					&pwm1_pins
 					&pwm2_pins
-					&pwm3_pins
+					&pwm3_pins*/
 					&gpio84_pins
 					&gpio85_pins
 					&gpio86_pins
@@ -875,21 +913,21 @@
 					&gpio111_pins
 					&gpio112_pins
 					&gpio113_pins
-					&smb0_pins
+				/*	&smb0_pins
 					&smb1_pins
 					&smb2_pins
 					&smb2c_pins
 					&smb2b_pins
 					&smb1c_pins
 					&smb1b_pins
-					&smb8_pins
+					&smb8_pins*/
 					&gpio130_pins
 					&gpio131_pins
-					&smb10_pins
-					&smb11_pins
+				/*	&smb10_pins
+					&smb11_pins*/
 					/*&sd1_pins*/
-					&pwm4_pins
-					&pwm5_pins
+				/*	&pwm4_pins
+					&pwm5_pins*/
 					&gpio146_pins
 					&gpio147_pins
 					/*&mmc8_pins
@@ -901,8 +939,8 @@
 					&gpio168_pins
 					&gpio169_pins
 					&gpio170_pins
-					&smb6_pins
-					&smb7_pins
+				/*	&smb6_pins
+					&smb7_pins*/
 					&gpio175_pins
 					&gpio176_pins
 					&gpio177_pins
@@ -914,10 +952,10 @@
 					&gpio190o_pins
 					&gpio191o_pins
 					&gpio192_pins
-					&smb0b_pins
-					&smb0c_pins
+				/*	&smb0b_pins
+					&smb0c_pins*/
 					&gpio197_pins
-					&smb0d_pins
+				/*	&smb0d_pins*/
 					&gpio200_pins
 					&gpio203o_pins
 					&ddc_pins
@@ -933,7 +971,7 @@
 					&gpio217_pins
 					&gpio218_pins
 					&gpio219_pins
-					&smb12_pins
+				/*	&smb12_pins*/
 					&gpio222_pins
 					&gpio223_pins
 					&spix_pins
