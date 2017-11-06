@@ -244,7 +244,7 @@
 
 	apb {
 	
-		watchdog1: watchdog@f0009000 {
+		watchdog0: watchdog@f0008000 {
 			status = "okay";
 		};
 
