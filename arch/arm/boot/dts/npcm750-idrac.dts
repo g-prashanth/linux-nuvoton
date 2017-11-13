@@ -361,7 +361,7 @@
             };
         };
             mft: mft@0 {
-            pinctrl-names = "default";
+/*            pinctrl-names = "default";
             pinctrl-0 = <&fanin0_pins
                          &fanin1_pins
                          &fanin2_pins
@@ -377,7 +377,7 @@
                          &fanin12_pins
                          &fanin13_pins
                          &fanin14_pins
-                         &fanin15_pins>;
+                         &fanin15_pins>;*/
             status = "okay";
     };
 
@@ -876,12 +876,12 @@
 					&gpio61l_pins
 					&gpio62l_pins
 					&gpio63o_pins
-				/*	&fanin0_pins
+					&fanin0_pins
 					&fanin1_pins
 					&fanin2_pins
 					&fanin3_pins
 					&fanin4_pins
-					&fanin5_pins*/
+					&fanin5_pins
 					&gpio70_pins
 					&gpio71_pins
 					&gpio72_pins
