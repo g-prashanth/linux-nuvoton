@@ -376,6 +376,12 @@ config GPIO_SPEAR_SPICS
 	help
 	  Say yes here to support ST SPEAr SPI Chip Select as GPIO device
 
+config GPIO_SPIX
+	tristate "SPI-X GPIO support"
+	depends on OF_GPIO
+	help
+	  Say yes here to support the SPI-X GPIO device
+
 config GPIO_STA2X11
 	bool "STA2x11/ConneXt GPIO support"
 	depends on MFD_STA2X11

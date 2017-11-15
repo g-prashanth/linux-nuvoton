@@ -1494,6 +1494,7 @@ config ARM_PSCI
 # selected platforms.
 config ARCH_NR_GPIO
 	int
+	default 1280 if ARCH_NPCMX50
 	default 1024 if ARCH_BRCMSTB || ARCH_SHMOBILE || ARCH_TEGRA || \
 		ARCH_ZYNQ
 	default 512 if ARCH_EXYNOS || ARCH_KEYSTONE || SOC_OMAP5 || \
