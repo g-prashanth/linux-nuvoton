@@ -70,6 +70,21 @@
 
     };
 
+    leds {
+        compatible = "gpio-leds";
+
+        heartbeat {
+            label = "heartbeat";
+			linux,default-trigger = "heartbeat";
+            gpios = <&pinctrl 0 0>;
+        };
+
+        identify {
+            label = "identify";
+            gpios = <&pinctrl 61 0>;
+        };
+    };
+
     ahb {
         gmac0: eth@f0802000 {
         /*    pinctrl-names = "default";

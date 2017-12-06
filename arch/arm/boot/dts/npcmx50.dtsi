@@ -709,6 +709,7 @@
 
 	pinctrl: pinctrl@0 {
 		compatible = "nuvoton,npcmx50-pinctrl";
+		#gpio-cells = <2>;
 		status = "okay";
 		iox1_pins: iox1_pins {
 			groups = "iox1";
